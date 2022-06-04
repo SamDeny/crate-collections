@@ -1,0 +1,39 @@
+{
+    "name": "crate/collections",
+    "type": "crate-module",
+    "version": "0.1.0",
+    "description": "The official content collection management module for the Crate CMS.",
+    "keywords": [
+        "crate",
+        "collection",
+        "data",
+        "storage",
+        "content",
+        "module",
+        "cms"
+    ],
+    "homepage": "https://crate.md/module/@crate/collections",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rat.md",
+            "email": "info@crate.md",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.0.0",
+        "crate/core": "^0.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crate\\Collections\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
