@@ -1,0 +1,119 @@
+{
+    "$scheme": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://schemes.crate.md/@crate/collections/collection.schema.json",
+    "title": "Collections",
+    "description": "The single collection structure of the @crate/collections Crate CMS module",
+    "type": "object",
+    "properties": {
+        "uuid": {
+            "description": "Custom unqiue UUIDv4 for this collection, leave empty to auto-generate an UUID",
+            "type": "string",
+            "format": "uuid"
+        },
+        "slug": {
+            "description": "Unique slug for this collection",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 64
+        },
+        "label": {
+            "description": "Label for this collection",
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 128
+        },
+        "group": {
+            "description": "Group in which this collection should be listed",
+            "type": "string"
+        },
+        "fields": {
+            "description": "All fields within this collection",
+            "type": "object",
+            "propertyNames": {
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+            },
+            "minProperties": 1,
+            "additionalProperties": { 
+                "type": "object" 
+            }
+        },
+        "permissions": {
+            "description": "All permission settings for this collection",
+            "type": "object",
+            "properties": {
+                
+            },
+            "propertyNames": {
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+            },
+            "additionalProperties": {
+                "type": "object",
+                "properties": {
+                    "manage": {
+                        "description": "Manage the collection details",
+                        "type": "boolean"
+                    },
+                    "create": {
+                        "description": "Create new entries within this collection",
+                        "type": "boolean"
+                    },
+                    "view": {
+                        "description": "View existring entries within this collection",
+                        "type": ["boolean", "string"],
+                        "enum": [true, false, "own", "all"]
+                    },
+                    "edit": {
+                        "description": "Edit existing entries within this collection",
+                        "type": ["boolean", "string"],
+                        "enum": [true, false, "own", "all"]
+                    },
+                    "delete": {
+                        "description": "Delete existing entries within this collection",
+                        "type": ["boolean", "string"],
+                        "enum": [true, false, "own", "all"]
+                    }
+                }
+            }
+        },
+        "config": {
+            "description": "Configuration values for this collection",
+            "type": "object",
+            "properties": {
+                "orderField": {
+                    "description": "Default order field",
+                    "type": "string"
+                },
+                "orderDirection": {
+                    "description": "Default order direction",
+                    "type": "string",
+                    "enum": ["ASC", "DESC"]
+                }
+            },
+            "propertyNames": {
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+            },
+            "additionalProperties": true
+        },
+        "render": {
+            "description": "Rendering configuration values for this collection",
+            "type": "object",
+            "properties": {
+                "color": {
+                    "description": "Color Code, used for the @crate/backend module",
+                    "type": "string"
+                },
+                "icon": {
+                    "description": "Bootstrap-Icon identifier, used for the @crate/backend module",
+                    "type": "string"
+                }
+            },
+            "propertyNames": {
+                "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+            },
+            "additionalProperties": true
+        }
+    },
+    "required": [
+        "slug", "label"
+    ]
+}
